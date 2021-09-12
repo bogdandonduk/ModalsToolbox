@@ -1,7 +1,7 @@
 
 # ModalsToolbox 
   
-  Android library based on the enhanced builder pattern that simplifies creation of modal windows with a good look and feel. It currently supports bottom sheet modals.
+  Android library based on the enhanced builder pattern that simplifies creation of modals that look beautiful. It currently supports bottom sheet modals.
   
 ## Include in your project  
 **Gradle dependency**  
