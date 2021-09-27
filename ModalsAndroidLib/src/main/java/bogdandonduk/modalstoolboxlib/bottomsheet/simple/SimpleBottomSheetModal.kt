@@ -84,30 +84,38 @@ internal class SimpleBottomSheetModal : BaseBottomSheetModal<LayoutSimpleBottomS
                 }
             }
 
-            /** NEGATIVE BUTTON */
-            viewBinding.layoutSimpleBottomSheetModalNegativeButtonTextView.let {
-                it.background = DrawableBuilder()
-                    .cornerRadius(1000000)
-                    .ripple()
-                    .rippleColor(rippleColor)
-                    .build()
+            if(negativeButton != null) {
+                /** NEGATIVE BUTTON */
+                viewBinding.layoutSimpleBottomSheetModalNegativeButtonTextView.let {
+                    it.background = DrawableBuilder()
+                        .cornerRadius(1000000)
+                        .ripple()
+                        .rippleColor(rippleColor)
+                        .build()
 
-                it.setTextColor(positiveButton.textColor ?: appearance.genericButtonTextColor ?: appearance.genericTextColor)
+                    it.setTextColor(positiveButton.textColor ?: appearance.genericButtonTextColor ?: appearance.genericTextColor)
 
-                it.text = negativeButton.text
+                    it.text = negativeButton?.text
 
-                it.setOnClickListener { view ->
-                    negativeButton.onClickAction?.invoke(view, this@SimpleBottomSheetModal)
+                    it.setOnClickListener { view ->
+                        negativeButton?.onClickAction?.invoke(view, this@SimpleBottomSheetModal)
+                    }
+
+                    it.post {
+                        if(it.layout.getEllipsisCount(1) > 0)
+                            it.setOnLongClickListener {
+
+                                true
+                            }
+                    }
                 }
 
-                it.post {
-                    if(it.layout.getEllipsisCount(1) > 0)
-                        it.setOnLongClickListener {
-
-                            true
-                        }
-                }
+                viewBinding.layoutSimpleBottomSheetModalButtonDividerLinearLayout.setBackgroundColor(appearance.dividerLinesColor)
+            } else {
+                viewBinding.layoutSimpleBottomSheetModalNegativeButtonTextView.visibility = View.GONE
+                viewBinding.layoutSimpleBottomSheetModalButtonDividerLinearLayout.visibility = View.GONE
             }
+
 
             /** OVERFLOW MENU BUTTON */
             if(overflowMenu.buttons.isNotEmpty()) {
@@ -137,9 +145,6 @@ internal class SimpleBottomSheetModal : BaseBottomSheetModal<LayoutSimpleBottomS
                     }
                 }
             }
-
-            /** BUTTONS' DIVIDER LINE */
-            viewBinding.layoutSimpleBottomSheetModalButtonDividerLinearLayout.setBackgroundColor(appearance.dividerLinesColor)
         }
     }
 }

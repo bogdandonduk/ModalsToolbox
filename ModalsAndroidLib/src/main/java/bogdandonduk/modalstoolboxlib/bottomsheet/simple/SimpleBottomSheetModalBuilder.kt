@@ -85,7 +85,7 @@ class SimpleBottomSheetModalBuilder internal constructor(key: String) : BaseBott
 
     fun getPositiveButton() = model.positiveButton
 
-    inline fun setNegativeButton(modification: (oldButton: Button) -> Button) = this.apply {
+    inline fun setNegativeButton(modification: (oldButton: Button?) -> Button?) = this.apply {
         model.negativeButton = modification.invoke(model.negativeButton)
     }
 

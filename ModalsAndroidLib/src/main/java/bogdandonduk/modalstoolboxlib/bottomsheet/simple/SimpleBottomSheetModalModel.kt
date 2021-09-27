@@ -18,7 +18,7 @@ internal class SimpleBottomSheetModalModel(
     var textContent: MutableList<Text>,
 
     var positiveButton: Button,
-    var negativeButton: Button,
+    var negativeButton: Button?,
 
     var contextMenu: ContextMenu,
     var overflowMenu: OverflowMenu,
