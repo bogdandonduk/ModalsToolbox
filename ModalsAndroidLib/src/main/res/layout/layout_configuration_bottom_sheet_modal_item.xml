@@ -4,19 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="16dp"
+    android:paddingEnd="16dp">
+
+    <TextView
+        android:id="@+id/layout_configuration_bottom_sheet_modal_item_hint_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Select configuration: " />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_configuration"
+        android:id="@+id/layout_configuration_bottom_sheet_modal_item_selected_configuration_option_container_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         android:paddingEnd="20dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/layout_configuration_bottom_sheet_modal_item_hint_text_view">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_configuration_bottom_sheet_modal_item_icon_container_constraint_layout"
@@ -47,11 +61,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/layout_configuration_bottom_sheet_modal_item_text_text_view"
+            android:id="@+id/layout_configuration_bottom_sheet_modal_item_option_text_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:gravity="center_vertical"
             android:padding="5dp"
+            android:singleLine="true"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/layout_configuration_bottom_sheet_modal_item_icon_container_constraint_layout"
