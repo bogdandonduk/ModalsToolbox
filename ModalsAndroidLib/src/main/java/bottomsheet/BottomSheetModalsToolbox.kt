@@ -30,17 +30,17 @@ object BottomSheetModalsToolbox {
     internal fun getSavedModalModel(key: String) = savedModalModels[key]
 
     @Synchronized
-    internal fun removeModalModel(key: String) {
+    fun deleteSavedModalInfo(key: String) {
         savedModalModels.remove(key)
     }
 
     @Synchronized
-    internal fun dismissAllModals(removeModels: Boolean = true) {
+    fun dismissAllModals(deleteInfo: Boolean = true) {
         savedModalModels.run {
             forEach {
                 it.value.modal?.dismiss()
 
-                if(removeModels)
+                if(deleteInfo)
                     remove(it.key)
             }
         }

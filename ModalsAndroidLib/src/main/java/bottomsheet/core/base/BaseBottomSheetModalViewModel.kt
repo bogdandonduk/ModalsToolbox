@@ -11,7 +11,7 @@ internal abstract class BaseBottomSheetModalViewModel(key: String) : ViewModel()
 
     override fun onCleared() {
         if(!saveInfo)
-            BottomSheetModalsToolbox.removeModalModel(model.key)
+            BottomSheetModalsToolbox.deleteSavedModalInfo(model.key)
 
         BottomSheetModalsToolbox.modalShowing = false
     }
