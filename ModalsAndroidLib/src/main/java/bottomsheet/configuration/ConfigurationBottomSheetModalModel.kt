@@ -1,5 +1,6 @@
 package bottomsheet.configuration
 
+import bottomsheet.configuration.popupmenu.ConfigurationPopupMenuAppearance
 import bottomsheet.core.anatomy.appearance.Appearance
 import bottomsheet.core.anatomy.button.Button
 import bottomsheet.core.anatomy.button.configuration.ConfigurationOptionsButton
@@ -18,6 +19,8 @@ internal class ConfigurationBottomSheetModalModel(
 
     var title: Text,
     var configurationOptionsButtons: MutableList<ConfigurationOptionsButton>,
+
+    var popupMenuAppearance: ConfigurationPopupMenuAppearance,
 
     var positiveButton: Button,
     var negativeButton: Button?,

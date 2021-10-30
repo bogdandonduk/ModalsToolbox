@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import bogdandonduk.popupmenutoolboxlib.PopupMenuToolbox
 import bottomsheet.BottomSheetModalsConfig
 import bottomsheet.BottomSheetModalsToolbox
+import bottomsheet.configuration.popupmenu.ConfigurationPopupMenuAppearance
 import bottomsheet.core.anatomy.appearance.Appearance
 import bottomsheet.core.anatomy.button.Button
 import bottomsheet.core.anatomy.button.configuration.ConfigurationOptionsButton
@@ -24,6 +25,7 @@ class ConfigurationBottomSheetModalBuilder internal constructor(key: String) : B
                 appearance = appearance,
                 title = title,
                 configurationOptionsButtons = configurationOptionsButtons,
+                popupMenuAppearance = popupMenuAppearance,
                 positiveButton = positiveButton,
                 negativeButton = negativeButton,
                 contextMenu = contextMenu,
@@ -40,7 +42,7 @@ class ConfigurationBottomSheetModalBuilder internal constructor(key: String) : B
                     "Title"
                 ),
                 configurationOptionsButtons = mutableListOf(),
-
+                popupMenuAppearance = ConfigurationPopupMenuAppearance(),
                 positiveButton = Button("Confirm"),
                 negativeButton = Button("Cancel"),
 
@@ -81,6 +83,12 @@ class ConfigurationBottomSheetModalBuilder internal constructor(key: String) : B
             model.configurationOptionsButtons.add(index, button)
         }
     }
+
+    inline fun setPopupMenuAppearance(modification: (oldAppearance: ConfigurationPopupMenuAppearance) -> ConfigurationPopupMenuAppearance) = this.apply {
+        model.popupMenuAppearance = modification(model.popupMenuAppearance)
+    }
+
+    fun getPopupMenuAppearance() = model.popupMenuAppearance
 
     inline fun setPositiveButton(modification: (oldButton: Button) -> Button) = this.apply {
         model.positiveButton = modification(model.positiveButton)

@@ -122,7 +122,7 @@ internal class ConfigurationBottomSheetModalAdapter(
                     val currentOption = item.configurationOptions[item.currentNonPersistentOptionId ?: item.currentOptionIdProviderAction()]
 
                     layoutConfigurationBottomSheetModalItemOptionTextTextView.run {
-                        setTextColor(item.textColor ?: model.appearance.genericTextColor)
+                        setTextColor(currentOption.textColor ?: item.textColor ?: model.appearance.genericTextColor)
 
                         text = currentOption.text
                     }

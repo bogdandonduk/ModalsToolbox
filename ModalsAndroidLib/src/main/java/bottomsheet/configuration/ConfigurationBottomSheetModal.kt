@@ -172,7 +172,7 @@ internal class ConfigurationBottomSheetModal : BaseBottomSheetModal<LayoutSimple
                     add(
                         PopupMenuItem(
                             text = it.text,
-                            textColor = it.textColor,
+                            textColor = model.popupMenuAppearance.textColor,
                             icon = it.icon,
                             iconTintColor = it.iconTintColor,
                             iconContentDescription = it.iconContentDescription,
@@ -188,6 +188,9 @@ internal class ConfigurationBottomSheetModal : BaseBottomSheetModal<LayoutSimple
                     )
                 }
             }
+        }
+        .setBackgroundColor {
+            model.popupMenuAppearance.backgroundColor
         }
         .setOnShowAction { _, _ ->
             val rippleColor = CommonToolbox.getRippleColorByLuminance(requireContext(), model.appearance.backgroundColor)
