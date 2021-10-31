@@ -3,6 +3,7 @@ package bottomsheet.core.anatomy.button.configuration
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
 import bottomsheet.core.anatomy.button.configuration.option.ConfigurationOption
+import bottomsheet.core.anatomy.text.Text
 
 class ConfigurationOptionsButton(
     var text: CharSequence,
@@ -20,6 +21,8 @@ class ConfigurationOptionsButton(
     var cornerRadiusBottomLeftPx: Int = 8,
 
     var configurationOptions: MutableList<ConfigurationOption> = mutableListOf(),
+
+    var note: Text? = null,
 
     var currentOptionIdProviderAction: () -> Int,
 ) {

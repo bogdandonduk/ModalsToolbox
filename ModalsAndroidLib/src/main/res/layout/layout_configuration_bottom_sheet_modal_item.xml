@@ -75,4 +75,17 @@
             tools:text="Modal text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/layout_configuration_bottom_sheet_modal_item_note_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/layout_configuration_bottom_sheet_modal_item_selected_configuration_option_container_constraint_layout"
+        app:layout_constraintStart_toStartOf="@+id/layout_configuration_bottom_sheet_modal_item_selected_configuration_option_container_constraint_layout"
+        app:layout_constraintTop_toBottomOf="@+id/layout_configuration_bottom_sheet_modal_item_selected_configuration_option_container_constraint_layout"
+        tools:text="This will erase your disk!"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

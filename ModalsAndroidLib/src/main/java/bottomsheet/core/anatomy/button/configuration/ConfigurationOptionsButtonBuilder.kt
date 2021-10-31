@@ -2,6 +2,7 @@ package bottomsheet.core.anatomy.button.configuration
 
 import android.graphics.drawable.Drawable
 import bottomsheet.core.anatomy.button.configuration.option.ConfigurationOption
+import bottomsheet.core.anatomy.text.Text
 
 class ConfigurationOptionsButtonBuilder internal constructor() {
     @PublishedApi
@@ -50,6 +51,12 @@ class ConfigurationOptionsButtonBuilder internal constructor() {
     fun getStrokeWidth() = model.strokeWidth
 
     fun getAllConfigurationOptions() = model.configurationOptions
+
+    inline fun setNote(modification: (oldNote: Text?) -> Text?) = this.apply {
+        model.note = modification(model.note)
+    }
+
+    fun getNote() = model.note
 
     fun setCurrentOptionIdProviderAction(currentOptionProviderAction: () -> Int) = this.apply {
         model.currentOptionIdProviderAction = currentOptionProviderAction

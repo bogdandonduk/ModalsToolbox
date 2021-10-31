@@ -148,6 +148,17 @@ internal class ConfigurationBottomSheetModalAdapter(
                             }
                         } catch(thr: Throwable) {  }
                     }
+
+                    if(item.note != null) {
+                        layoutConfigurationBottomSheetModalItemNoteTextView.run {
+                            visibility = View.VISIBLE
+
+                            setTextColor(item.note!!.textColor ?: model.appearance.genericTextColor)
+
+                            text = item.note!!.text
+                        }
+                    } else
+                        layoutConfigurationBottomSheetModalItemNoteTextView.visibility = View.GONE
                 }
             }
         else if(holder is TitleViewHolder)
