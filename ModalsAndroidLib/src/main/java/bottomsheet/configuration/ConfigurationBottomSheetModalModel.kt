@@ -20,6 +20,8 @@ internal class ConfigurationBottomSheetModalModel(
     var title: Text,
     var configurationOptionsButtons: MutableList<ConfigurationOptionsButton>,
 
+    var extraNotes: MutableList<Text>?,
+
     var popupMenuAppearance: ConfigurationPopupMenuAppearance,
 
     var positiveButton: Button,

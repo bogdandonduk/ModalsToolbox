@@ -13,6 +13,7 @@ import bogdandonduk.popupmenutoolboxlib.PopupMenuItem
 import bottomsheet.core.anatomy.button.configuration.ConfigurationOptionsButton
 import bottomsheet.core.anatomy.button.configuration.option.ConfigurationOption
 import bottomsheet.core.base.BaseBottomSheetModal
+import bottomsheet.simple.SimpleBottomSheetModalAdapter
 import top.defaults.drawabletoolbox.DrawableBuilder
 
 internal class ConfigurationBottomSheetModal : BaseBottomSheetModal<LayoutSimpleBottomSheetModalBinding, ConfigurationBottomSheetModalViewModel>(
@@ -63,6 +64,19 @@ internal class ConfigurationBottomSheetModal : BaseBottomSheetModal<LayoutSimple
                     touchInterceptor = viewBinding.layoutSimpleBottomSheetModalTouchConstraintLayout
                 )
             )
+
+//            /** CONFIGURATION OPTIONS */
+//            ListToolbox.initializeList(
+//                requireActivity(),
+//                viewBinding.layoutSimpleBottomSheetModalTextContainerRecyclerView,
+//                SimpleBottomSheetModalAdapter(
+//                    title = title,
+//                    configurationOptionsButtons = configurationOptionsButtons,
+//                    hostActivity = requireActivity(),
+//                    model = this,
+//                    touchInterceptor = viewBinding.layoutSimpleBottomSheetModalTouchConstraintLayout
+//                )
+//            )
 
             /** POSITIVE BUTTON */
             viewBinding.layoutSimpleBottomSheetModalPositiveButtonTextView.let {

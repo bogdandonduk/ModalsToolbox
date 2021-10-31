@@ -25,6 +25,7 @@ class ConfigurationBottomSheetModalBuilder internal constructor(key: String) : B
                 appearance = appearance,
                 title = title,
                 configurationOptionsButtons = configurationOptionsButtons,
+                extraNotes = extraNotes,
                 popupMenuAppearance = popupMenuAppearance,
                 positiveButton = positiveButton,
                 negativeButton = negativeButton,
@@ -42,6 +43,7 @@ class ConfigurationBottomSheetModalBuilder internal constructor(key: String) : B
                     "Title"
                 ),
                 configurationOptionsButtons = mutableListOf(),
+                extraNotes = null,
                 popupMenuAppearance = ConfigurationPopupMenuAppearance(),
                 positiveButton = Button("Confirm"),
                 negativeButton = Button("Cancel"),
@@ -83,6 +85,12 @@ class ConfigurationBottomSheetModalBuilder internal constructor(key: String) : B
             model.configurationOptionsButtons.add(index, button)
         }
     }
+
+    inline fun setAllExtraNotes(modification: (oldExtraNotes: MutableList<Text>?) -> MutableList<Text>?) = this.apply {
+        model.extraNotes = modification(model.extraNotes)
+    }
+
+    fun getAllExtraNotes() = model.extraNotes
 
     inline fun setPopupMenuAppearance(modification: (oldAppearance: ConfigurationPopupMenuAppearance) -> ConfigurationPopupMenuAppearance) = this.apply {
         model.popupMenuAppearance = modification(model.popupMenuAppearance)
