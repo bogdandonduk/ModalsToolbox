@@ -2,6 +2,7 @@ package bottomsheet.configuration
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
@@ -10,6 +11,8 @@ import bogdandonduk.commontoolboxlib.CommonToolbox
 import bogdandonduk.listtoolboxlib.ListToolbox
 import bogdandonduk.modalstoolboxlib.databinding.LayoutSimpleBottomSheetModalBinding
 import bogdandonduk.popupmenutoolboxlib.PopupMenuItem
+import bogdandonduk.popupmenutoolboxlib.PopupMenuToolbox
+import bogdandonduk.popupmenutoolboxlib.PopupMenusHandler
 import bottomsheet.core.anatomy.button.configuration.ConfigurationOptionsButton
 import bottomsheet.core.anatomy.button.configuration.option.ConfigurationOption
 import bottomsheet.core.base.BaseBottomSheetModal
@@ -20,7 +23,7 @@ internal class ConfigurationBottomSheetModal : BaseBottomSheetModal<LayoutSimple
     { layoutInflater: LayoutInflater, viewGroup: ViewGroup? ->
         LayoutSimpleBottomSheetModalBinding.inflate(layoutInflater, viewGroup, false)
     }
-) {
+), PopupMenusHandler {
     override var viewModelInitialization = {
         ConfigurationBottomSheetModalViewModel(tag!!)
     }
@@ -60,6 +63,7 @@ internal class ConfigurationBottomSheetModal : BaseBottomSheetModal<LayoutSimple
                     title = title,
                     configurationOptionsButtons = configurationOptionsButtons,
                     hostActivity = requireActivity(),
+                    hostFragment = this@ConfigurationBottomSheetModal,
                     model = this,
                     touchInterceptor = viewBinding.layoutSimpleBottomSheetModalTouchConstraintLayout
                 )
@@ -177,6 +181,17 @@ internal class ConfigurationBottomSheetModal : BaseBottomSheetModal<LayoutSimple
                 }
             }
         }
+
+        CommonToolbox.setOnTouchListeners({ _, motionEvent ->
+            if(motionEvent.action == MotionEvent.ACTION_DOWN)
+                dismissPopupMenus()
+        }, viewBinding.root,
+            viewBinding.layoutSimpleBottomSheetModalNegativeButtonTextView,
+            viewBinding.layoutSimpleBottomSheetModalNegativeButtonTextView,
+            viewBinding.layoutSimpleBottomSheetModalPositiveButtonTextView,
+            viewBinding.layoutSimpleBottomSheetModalContentContainerConstraintLayout,
+            viewBinding.layoutSimpleBottomSheetModalTouchConstraintLayout
+        )
     }
 
     fun buildConfigurationPopupMenu(options: ConfigurationOptionsButton, buttonView: View, adapterPosition: Int, model: ConfigurationBottomSheetModalModel) = getInitializedViewModel(viewModelStore).currentPopupMenuBuilder
@@ -230,4 +245,12 @@ internal class ConfigurationBottomSheetModal : BaseBottomSheetModal<LayoutSimple
                     .cornerRadii(options.cornerRadiusTopLeftPx, options.cornerRadiusTopRightPx, options.cornerRadiusBottomRightPx, options.cornerRadiusBottomLeftPx)
                     .build()
         }
+
+    override fun continuePopupMenus(vararg excludedKeys: String) {
+
+    }
+
+    override fun dismissPopupMenus(vararg excludedKeys: String) {
+        PopupMenuToolbox.dismissPopupMenu(getInitializedViewModel(viewModelStore).currentPopupMenuBuilder.getKey())
+    }
 }

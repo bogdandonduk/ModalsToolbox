@@ -20,6 +20,7 @@ internal class ConfigurationBottomSheetModalAdapter(
     var title: Text,
     var configurationOptionsButtons: MutableList<ConfigurationOptionsButton>,
     var hostActivity: FragmentActivity,
+    var hostFragment: ConfigurationBottomSheetModal,
     var model: ConfigurationBottomSheetModalModel,
     var touchInterceptor: View
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -51,6 +52,12 @@ internal class ConfigurationBottomSheetModalAdapter(
 
         init {
             viewBinding.root.run {
+                setOnTouchListener { _, _ ->
+                    hostFragment.dismissPopupMenus()
+
+                    false
+                }
+
                 setOnTouchListener { _, event ->
                     touchInterceptor.dispatchTouchEvent(event)
 
